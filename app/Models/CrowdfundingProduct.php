@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Encore\Admin\Traits\DefaultDatetimeFormat;
 
 class CrowdfundingProduct extends Model
 {
+    use DefaultDatetimeFormat;
     //定义众筹 3中状态
     const STATUS_FUNDING = 'funding';
     const STATUS_SUCCESS = 'success';
