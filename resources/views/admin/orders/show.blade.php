@@ -74,7 +74,13 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-success" id="ship-btn">发货</button>
+                            @if($order->ship_status === \App\Models\Order::SHIP_STATUS_PENDING)
+                                @if($order->refund_status !== \App\Models\Order::REFUND_STATUS_SUCCESS &&
+                                    ($order->type !== \App\Models\Order::TYPE_CROWDFUNDING ||
+                                    $order->items[0]->product->crowdfunding->status === \App\Models\CrowdfundingProduct::STATUS_SUCCESS))
+                                    <button type="submit" class="btn btn-success" id="ship-btn">发货</button>
+                                @endif
+                            @else
                         </form>
                     </td>
                 </tr>
